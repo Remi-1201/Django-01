@@ -10,7 +10,7 @@ TIME_ZONE = 'Asia/Tokyo'
 # add to INSTALLED_APPS
 'blog.apps.BlogConfig',
 
-# Create models
+# A - Create models
 # 1- blog\models.py - define the model
 class Post(models.Model): 
   title = models.CharField(max_length = 100) 
@@ -26,6 +26,9 @@ class Post(models.Model):
 python3 manage.py makemigrations
 # 3- Submit to the database
 python3 manage.py migrate
+
+
+# B - Create Admin page
 
 # Start server
 python3 manage.py runserver
