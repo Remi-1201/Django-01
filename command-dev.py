@@ -20,6 +20,7 @@ class Post(models.Model):
   updated_at = models.DateTimeField(auto_now = True)
   
   def __str__(self):
+    # show post title in index page
     return self.title
 
   # A-2- Make migrations file
@@ -35,6 +36,45 @@ python3 manage.py createsuperuser
       from blog.models import Post
       # Register your models here.
       admin.site.register(Post)
+
+
+# C - Make the blog visible to users
+  # C-1- blog\views.py >add
+    from django.views.generic import ListView
+    from blog.models import Post
+
+    class PostList(ListView): 
+      model = Post 
+      # In case changing the default file name >>add
+      template_name = "blog/index.html"
+
+  # C-2- config\urls.py >add
+    from django.urls import path, include
+    # urlpatterns = [
+    #     path('admin/', admin.site.urls),
+        path("", include("blog.urls"))
+    # ]
+
+  # C-3- Make blog\urls.py
+    from django.urls import path 
+    from blog.views import PostList 
+
+    urlpatterns = [
+        path("", PostList.as_view(), name ="post_list"),
+    ]
+  
+  # C-4- Make blog/post_list.html
+    mkdir -p blog/templates/blog
+    
+    touch blog/templates/blog/post_list.html
+
+  # C-5- Edit HTML
+    <h1> ブログ一覧 </h1> 
+    <hr> 
+    {% for post in object_list %} 
+      <h2>{{ post.title }}</h2> 
+      <p>{{ post.content }}</p> 
+    {% endfor %}
 
 # Start server
 python3 manage.py runserver
