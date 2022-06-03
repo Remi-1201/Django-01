@@ -152,7 +152,7 @@ python3 manage.py createsuperuser
       {% extends 'blog/base.html' %} 
       {% block content %}
       <div class="mt-3">
-      # ...
+        # ...
       </div>
       {% endblock content %}
 

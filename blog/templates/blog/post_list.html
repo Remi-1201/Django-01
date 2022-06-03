@@ -1,6 +1,7 @@
 {% extends 'blog/base.html' %} 
 {% block content %}
 {% for post in posts %}
+  {% if post.is_published %}
   <div class ="card w-75 mt-3 mx-auto"> 
     <div class ="card-body"> 
       <h2 class ="card-title">{{ post.title }}</h2 > 
@@ -10,5 +11,6 @@
       </div > 
     </div > 
   </div > 
+  {% endif %} 
 {% endfor %} 
 {% endblock content %} 
