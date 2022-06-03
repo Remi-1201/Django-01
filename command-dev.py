@@ -138,12 +138,23 @@ python3 manage.py createsuperuser
 
   # E-5 Extend Bootstrap5 template
     # blog\templates\blog\post_list.html
-    {% extends 'blog/base.html' %} 
-    {% block content %}
-    # <h1> ブログ一覧 </h1> 
-    # ...
-    # {% endfor %}
-    {% endblock content %}
+      {% extends 'blog/base.html' %} 
+      {% block content %}
+      {% for post in posts %}
+      # <h1> ブログ一覧 </h1> 
+      # ...
+        <p class ="card-text">{{ post.content | truncatechars:30 }}</p > 
+      # ...
+      # {% endfor %}
+      {% endblock content %}
+
+    # blog\templates\blog\post_detail.html
+      {% extends 'blog/base.html' %} 
+      {% block content %}
+      <div class="mt-3">
+      # ...
+      </div>
+      {% endblock content %}
 
 # Start server
 python3 manage.py runserver
