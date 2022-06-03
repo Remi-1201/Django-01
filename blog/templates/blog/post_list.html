@@ -1,3 +1,5 @@
+{% extends 'blog/base.html' %} 
+{% block content %}
 <h1> ブログ一覧 </h1> 
 <hr> 
 {% for post in object_list %} 
@@ -5,3 +7,4 @@
   <p>{{ post.content }}</p>
   <a href ="{% url 'post_detail' post.pk %}">続きを読む</a> 
 {% endfor %}
+{% endblock content %}

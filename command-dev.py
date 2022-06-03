@@ -122,11 +122,11 @@ python3 manage.py createsuperuser
 
 # E- HTML
   # E-1- Make >> blog\templates\blog\base.html
-  # E-2- Install Bootstraps 5
+  # E-2- Install Bootstrap 5
     pip install django-bootstrap5
   # E-3- config\settings.py
     INSTALLED_APPS = [       
-      'django-bootstrap5', # >> add
+      'django_bootstrap5', # >> add
   ]
   # E-4- >> blog\templates\blog\base.html
     {% load django_bootstrap5 %} 
@@ -136,6 +136,14 @@ python3 manage.py createsuperuser
     {% bootstrap_javascript %}
     # <title> My Blog </title> 
 
+  # E-5 Extend Bootstrap5 template
+    # blog\templates\blog\post_list.html
+    {% extends 'blog/base.html' %} 
+    {% block content %}
+    # <h1> ブログ一覧 </h1> 
+    # ...
+    # {% endfor %}
+    {% endblock content %}
 
 # Start server
 python3 manage.py runserver
