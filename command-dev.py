@@ -120,6 +120,21 @@ python3 manage.py createsuperuser
     <hr>
     <p>{{post.content}}</p>
 
+# E- HTML
+  # E-1- Make >> blog\templates\blog\base.html
+  # E-2- Install Bootstraps 5
+    pip install django-bootstrap5
+  # E-3- config\settings.py
+    INSTALLED_APPS = [       
+      'django-bootstrap5', # >> add
+  ]
+  # E-4- >> blog\templates\blog\base.html
+    {% load django_bootstrap5 %} 
+    # <!DOCTYPE html> ...
+    # ...
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    # <title> My Blog </title> 
 
 
 # Start server
