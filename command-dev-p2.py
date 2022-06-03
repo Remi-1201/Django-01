@@ -33,14 +33,25 @@
   
   # A-5- Only Admin can view non-published posts
     # blog\templates\blog\post_list.html
-    # add below {% for post in posts %}
-      {% if post.is_published or user.is_authenticated %}
-      # ...
-      # <div class ="card-body"> 
-      {% if not post.is_published %}
+      # add below {% for post in posts %}
+        {% if post.is_published or user.is_authenticated %}
+        # ...
+        # <div class ="card-body"> 
+          {% if not post.is_published %}
+            <span class ="badge bg-danger"> 下書き </span> 
+          {% endif %}
+
+    # blog\views.py
+      # def get_object(self):
+        # post = super().get_object()
+        if post.is_published or self.request.user.is_authenticated: 
+          # return post
+
+    # blog\templates\blog\post_detail.html >>add
+      # <div class="mt-3">
+      {% if not post.is_published %} 
         <span class ="badge bg-danger"> 下書き </span> 
       {% endif %}
-
 
 # Start server
 python3 manage.py runserver

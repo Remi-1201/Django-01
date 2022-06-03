@@ -16,7 +16,7 @@ class PostDetail(DetailView):
 
     def get_object(self):
         post = super().get_object()
-        if post.is_published: 
+        if post.is_published or self.request.user.is_authenticated: 
             return post
         else:
             raise PermissionDenied
