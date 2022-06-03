@@ -24,9 +24,9 @@ class Post(models.Model):
     return self.title
 
   # A-2- Make migrations file
-python3 manage.py makemigrations
+  python3 manage.py makemigrations
   # A-3- Submit to the database
-python3 manage.py migrate
+  python3 manage.py migrate
 
 
 # B - Create Admin page
@@ -75,6 +75,44 @@ python3 manage.py createsuperuser
       <h2>{{ post.title }}</h2> 
       <p>{{ post.content }}</p> 
     {% endfor %}
+
+  # C-6- ListView settings
+    # blog\views.py >> add to change default url name
+    template_name = "blog/index.html"
+    # change default object name
+    context_object_name = "posts"
+
+# D - Create Detail View (2.8)
+  # D-1- blog\views.py
+  from django.views.generic import ListView, DetailView
+
+  from blog.models import Post
+
+  class PostList(ListView): 
+      model = Post 
+      context_object_name = "posts"
+
+  class PostDetail(DetailView): #this
+      model = Post
+      context_object_name = "posts"
+  
+  # D-2- blog\urls.py 
+  from django.urls import path 
+  from blog.views import PostList, PostDetail 
+
+  urlpatterns = [
+      path("", PostList.as_view(), name ="post_list"),
+      path("post/<int:pk>/", PostDetail.as_view(), name ="post_detail"),
+  ]
+    # /<int:pk>/ = post_id
+
+  # D-3- edit post_list.html
+    # Add >> {% for post in object_list %} 
+    #   <h2>{{ post.title }}</h2> 
+    #   <p>{{ post.content }}</p>
+      <a href ="{% url 'post_detail' post.pk %}">続きを読む</a> 
+    # {% endfor %}
+
 
 # Start server
 python3 manage.py runserver
