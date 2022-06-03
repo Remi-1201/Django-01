@@ -94,7 +94,8 @@ python3 manage.py createsuperuser
 
   class PostDetail(DetailView): #this
       model = Post
-      context_object_name = "posts"
+      context_object_name = "post"
+      # "post" showed in post_detail.html
   
   # D-2- blog\urls.py 
   from django.urls import path 
@@ -112,6 +113,13 @@ python3 manage.py createsuperuser
     #   <p>{{ post.content }}</p>
       <a href ="{% url 'post_detail' post.pk %}">続きを読む</a> 
     # {% endfor %}
+
+  # D-4- make post_detail.html
+    <h1>{{post.title}}</h1>
+    <p>{{post.updated_at | date}}</p> 
+    <hr>
+    <p>{{post.content}}</p>
+
 
 
 # Start server
