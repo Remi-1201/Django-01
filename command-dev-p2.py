@@ -1,4 +1,4 @@
-# A- Draft settings
+# A- Publish settings
   # A-1 blog\models.py >>add
     # class Post(models.Model): 
     #   title = models.CharField(max_length = 100) 
