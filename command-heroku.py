@@ -10,6 +10,8 @@ pip install gunicorn
 
 pip freeze > requirements.txt
 
+sudo apt install cloud-init
+
 # config\settings.py
 DEBUG = False
 
